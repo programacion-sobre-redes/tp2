@@ -19,10 +19,17 @@ add_executable(
   tp_tests
   tests/tests.cpp
   BMPImage.cpp
+  filters/filters.cpp
+  utils/utils.cpp
 )
 target_link_libraries(
   tp_tests
   GTest::gtest_main
+  Threads::Threads
+)
+
+target_include_directories(
+  tp_tests PRIVATE ${CMAKE_SOURCE_DIR}
 )
 
 include(GoogleTest)

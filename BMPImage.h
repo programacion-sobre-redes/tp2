@@ -1,3 +1,6 @@
+#ifndef BMPIMAGE_H
+#define BMPIMAGE_H
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -131,3 +134,5 @@ public:
      */
     void setSection(int x, int y, const vector<RGB>& sectionData, int width, int height);
 };
+
+#endif // BMPIMAGE_H

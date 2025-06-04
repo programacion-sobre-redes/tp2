@@ -1,3 +1,6 @@
+#ifndef UTILS_H
+#define UTILS_H
+
 #include <string>
 #include <vector>
 #include <functional>
@@ -11,3 +14,5 @@ struct FilterStep {
 };
 
 vector<FilterStep> parsePipeline(int argc, char* argv[]);
+
+#endif // UTILS_H

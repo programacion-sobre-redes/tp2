@@ -1,4 +1,7 @@
-#include "BMPImage.h"
+#ifndef FILTERS_H
+#define FILTERS_H
+
+#include "../BMPImage.h"
 #include <functional>
 #include <vector>
 #include <string>
@@ -52,6 +55,14 @@ void identityFilter(BmpImage& img, const vector<string>& params, int threads = 1
 void grayscaleFilter(BmpImage& img, const vector<string>& params, int threads = 1);
 
 /**
+ * @brief Filtro de escala de grises discreta (convierte la imagen a blanco y negro con una cantidad de grises fija)
+ * @param img Imagen a la que se le aplicará el filtro.
+ * @param params Parámetros del filtro (params[0] = cantidad de niveles de gris).
+ * @param threads Número de threads a utilizar (opcional).
+ */
+void thresholdFilter(BmpImage& img, const vector<string>& params, int threads = 1);
+
+/**
  * @brief Filtro negativo (invierte los colores de la imagen).
  * @param img Imagen a la que se le aplicará el filtro.
  * @param params Parámetros del filtro (no utilizados).
@@ -78,6 +89,14 @@ void applyPixelFilter(BmpImage& img, function<RGB(const RGB&, const vector<strin
 void applyKernelFilter(BmpImage& img, function<RGB(const BmpImage&, int, int, const vector<string>&)> kernelFunc, const vector<string>& params, int threads = 1);
 
 /**
+ * @brief Filtro de umbral (threshold filter).
+ * @param img Imagen a la que se le aplicará el filtro.
+ * @param params Parámetros del filtro (params[0] = la cantidad de niveles de gris)
+ * @param threads Número de threads a utilizar (opcional).
+ */
+RGB thresholdPixel(const RGB& pixel, const vector<string>& params);
+
+/**
  * @brief Filtro de desenfoque de caja (box blur).
  * @param img Imagen a la que se le aplicará el filtro.
  * @param params Parámetros del filtro (params[0] = tamaño del kernel).
@@ -86,11 +105,13 @@ void applyKernelFilter(BmpImage& img, function<RGB(const BmpImage&, int, int, co
 void boxBlurFilter(BmpImage& img, const vector<string>& params, int threads = 1);
 
 /**
- * @brief Filtro de nitidez
+ * @brief Filtro de máscara de desenfoque (unsharp mask).
  * @param img Imagen a la que se le aplicará el filtro.
- * @param params Parámetros del filtro (params[0] = tamaño del kernel, params[1] = strength).
+ * @param params Parámetros del filtro (params[0] = tamaño del kernel, params[1] = fuerza de la máscara).
  * @param threads Número de threads a utilizar (opcional).
  */
-void unsharpMaskFilter(BmpImage& img, const vector<string>& params, int threads);
+void unsharpMaskFilter(BmpImage& img, const vector<string>& params, int threads = 1);
 
 /* ----------------- AGREGAR ACÁ ↓↓↓ TODAS LAS DECLARACIONES DE FUNCIONES ----------------- */
+
+#endif // FILTERS_H
